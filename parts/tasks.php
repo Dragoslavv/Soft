@@ -13,7 +13,7 @@
                                 <div class="col-lg-6 col-md-6 text-right">
                                     <div class="change">
                                         <input type="checkbox" class="" id="box1">
-                                        <label for="box1">Show completed tasks</label>
+                                        <label for="box1">Hide completed tasks</label>
                                     </div>
                                 </div>
                             </div>

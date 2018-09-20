@@ -33,8 +33,8 @@
                                 </div>
                                 <div class="col-lg-8 col-md-8">
                                     <div class="form-group">
-                                        <input type="date" id="date" name="date" min="1000-01-01"
-                                               max="3000-12-31" class="form-control">
+                                        <input type="date" id="date" name="date" min="01-01-1000"
+                                               max="31-12-3000" class="form-control">
                                     </div>
                                 </div>
                             </div>

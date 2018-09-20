@@ -1,4 +1,5 @@
 function showHideTask() {
+
      $('.change input[type=checkbox]').click(function() {
          if ($(this).is(":checked")) {
              $(this).data( 'clicked', 'clicked' );
@@ -6,20 +7,20 @@ function showHideTask() {
              $(".chackbox1").find('td .list').each(function () {
                  if($(this).val() == '3') {
                      var ids=$(this).parent().parent().find(".chackbox1");
-                        ids['prevObject'].show();
+                        ids['prevObject'].hide();
                  }
              });
 
-             $('.change label').text("Hide competed tasks");
+             $('.change label').text("Show competed tasks");
          } else {
              $(this).data( 'clicked', '' );
              $(".chackbox1").find('td .list').each(function () {
                  if($(this).val() == '3') {
                      var ids=$(this).parent().parent().find(".chackbox1");
-                     ids['prevObject'].hide();
+                     ids['prevObject'].show();
                  }
              });
-             $('.change label').text("Show competed tasks")
+             $('.change label').text("Hide competed tasks")
          }
      });
 }
@@ -43,9 +44,11 @@ function statusTask() {
     });
 
     $('.list').on('change', function(){
+
         if($(this).val() == '3') {
             $(this).parent().parent().find(".btn-check").css({"background": "MediumSeaGreen", "color": "#fff"});
             $(this).parent().parent().find("#link").css({"text-decoration": "line-through"});
+
         } else {
             $(this).parent().parent().find('.btn-check').css({"background":"transparent","color":"#343a40"});
             $(this).parent().parent().find('#link').css({"text-decoration":"none"});
@@ -75,8 +78,6 @@ function createTask () {
                 console.log(response.success);
                 if(response.success == 'ok') {
                     $('.createSuccess').removeClass('hide');
-                }else{
-                    $('.createError').addClass('hide');
                 }
             },
             error:function (error) {
@@ -204,4 +205,5 @@ $(document).ready(function() {
         select: false,
         bInfo : false
     } );
+    
 });

@@ -153,7 +153,6 @@ input[type=checkbox] {
 
 input[type=checkbox] + label:before {
     content: "\2714";
-    border: 0.05em solid #000;
     border-radius: 0.2em;
     display: inline-block;
     width: 1.5em;
@@ -162,8 +161,11 @@ input[type=checkbox] + label:before {
     padding-bottom: 0.2em;
     margin-right: 0.3em;
     vertical-align: bottom;
-    color: transparent;
     transition: .2s;
+
+    background-color: MediumSeaGreen;
+    border-color: MediumSeaGreen;
+    color: #fff;
 }
 
 input[type=checkbox] + label:active:before {
@@ -171,14 +173,16 @@ input[type=checkbox] + label:active:before {
 }
 
 input[type=checkbox]:checked + label:before {
-    background-color: MediumSeaGreen;
-    border-color: MediumSeaGreen;
-    color: #fff;
+    border: 0.05em solid #000;
+    border-radius: 0.2em;
+    background-color: transparent;
+    color: transparent;
 }
 
 input[type=checkbox]:disabled + label:before {
     transform: scale(1);
     border-color: #aaa;
+
 }
 
 input[type=checkbox]:checked:disabled + label:before {
@@ -224,12 +228,10 @@ td > a:hover {
         width: 100%;
     }
 
-    /* Force table to not be like tables anymore */
     table, thead, tbody, th, td, tr {
         display: block;
     }
 
-    /* Hide table headers (but not display: none;, for accessibility) */
     thead tr {
         position: absolute;
         top: -9999px;
@@ -239,7 +241,6 @@ td > a:hover {
     tr { border: 1px solid #ccc; }
 
     td {
-        /* Behave  like a "row" */
         border: none;
         border-bottom: 1px solid #eee;
         position: relative;
@@ -247,15 +248,12 @@ td > a:hover {
     }
 
     td:before {
-        /* Now like a table header */
         position: absolute;
-        /* Top/left values mimic padding */
         top: 6px;
         left: 6px;
         width: 45%;
         padding-right: 10px;
         white-space: nowrap;
-        /* Label the data */
         content: attr(data-column);
 
         color: #000;
@@ -277,26 +275,20 @@ td > a:hover {
     display: none;
 }
 /*footer*/
-.col_white_amrc { color:#FFF;}
-footer { width:100%;     background-image: linear-gradient(to right,#252b2b,#494c4c); min-height:250px; padding:10px 0px 25px 0px ;}
-.pt2 { padding-top:40px ; margin-bottom:20px ;}
-footer p { font-size:13px; color:#CCC; padding-bottom:0px; margin-bottom:8px;}
-.mb10 { padding-bottom:15px ;}
-.footer_ul_amrc { margin:0px ; list-style-type:none ; font-size:14px; padding:0px 0px 10px 0px ; }
-.footer_ul_amrc li {padding:0px 0px 5px 0px;}
-.footer_ul_amrc li a{ color:#CCC;}
-.footer_ul_amrc li a:hover{ color:#fff; text-decoration:none;}
-.fleft { float:left;}
-.padding-right { padding-right:10px; }
 
-.footer_ul2_amrc {margin:0px; list-style-type:none; padding:0px;}
-.footer_ul2_amrc li p { display:table; }
-.footer_ul2_amrc li a:hover { text-decoration:none;}
-.footer_ul2_amrc li i { margin-top:5px;}
+footer {
+    width:100%;
+    background-image: linear-gradient(to right,#252b2b,#494c4c);
+    min-height:250px;
+    padding:10px 0 25px 0;
+}
 
-.bottom_border { border-bottom:1px solid #323f45; padding-bottom:20px;}
-
-
+footer p {
+    font-size:13px;
+    color:#CCC;
+    padding-bottom:0;
+    margin-bottom:8px;
+}
 .social_footer_ul { display:table; margin:15px auto 0 auto; list-style-type:none;  }
 .social_footer_ul li { padding-left:20px; padding-top:10px; float:left; }
 .social_footer_ul li a { color:#CCC; border:1px solid #CCC; padding:8px;border-radius:50%;}
