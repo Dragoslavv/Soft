@@ -187,7 +187,6 @@ input[type=checkbox]:checked:disabled + label:before {
     border-color: #bfb;
 }
 /* Styles table */
-
 table {
     width: 100%;
     border-collapse: collapse;
@@ -264,13 +263,19 @@ td > a:hover {
     }
 
 }
+
 /*  Modal footer fix */
 
 .modal-footer {
     display: block;
 }
+.show {
+    display: block;
+}
 
-
+.hide {
+    display: none;
+}
 /*footer*/
 .col_white_amrc { color:#FFF;}
 footer { width:100%;     background-image: linear-gradient(to right,#252b2b,#494c4c); min-height:250px; padding:10px 0px 25px 0px ;}

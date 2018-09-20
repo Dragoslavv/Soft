@@ -2,15 +2,23 @@ function showHideTask() {
      $('.change input[type=checkbox]').click(function() {
          if ($(this).is(":checked")) {
              $(this).data( 'clicked', 'clicked' );
-             if($("td .list").val() == '3') {
-                 $(this).parent().parent().parent().parent().parent().find('tbody .chackbox1').show();
-             }
+
+             $(".chackbox1").find('td .list').each(function () {
+                 if($(this).val() == '3') {
+                     var ids=$(this).parent().parent().find(".chackbox1");
+                        ids['prevObject'].show();
+                 }
+             });
+
              $('.change label').text("Hide competed tasks");
          } else {
              $(this).data( 'clicked', '' );
-             if($("td .list").val() == '3') {
-                 $(this).parent().parent().parent().parent().parent().find('tbody .chackbox1').hide();
-             }
+             $(".chackbox1").find('td .list').each(function () {
+                 if($(this).val() == '3') {
+                     var ids=$(this).parent().parent().find(".chackbox1");
+                     ids['prevObject'].hide();
+                 }
+             });
              $('.change label').text("Show competed tasks")
          }
      });
@@ -62,8 +70,14 @@ function createTask () {
                 'desc':desc,
                 'p':'insertTask'
             },
+            dataType: "json",
             success:function (response) {
-                console.log(response);
+                console.log(response.success);
+                if(response.success == 'ok') {
+                    $('.createSuccess').removeClass('hide');
+                }else{
+                    $('.createError').addClass('hide');
+                }
             },
             error:function (error) {
                 console.log(error);
@@ -74,7 +88,7 @@ function createTask () {
 }
 
 
-function updateTask() {
+function editingTask() {
     $(document).on('click','.edit', function(e){
         e.preventDefault();
          var uid   = $(this).data('uid');
@@ -84,14 +98,72 @@ function updateTask() {
              method:'POST',
              data:{
                  'uid':uid,
-                 'p':'updateTask'
+                 'p':'editTask'
              },
-             success:function (response) {
-                 console.log(response);
+             dataType: "json",
+             success:function (data) {
+                 $('#editSummary').val(data[1]);
+                 $('#dateEdit').val(data[2]);
+                 $('#descriptionsEdit').val(data[3]);
+                 $('#idEdit').val(data[0]);
+                 console.log(data)
              }
          });
          return false;
      });
+}
+
+function viewTask() {
+    $(document).on('click','.viewClass', function(e){
+        e.preventDefault();
+        var vid   = $(this).data('vid');
+        console.log(vid);
+
+        $.ajax({
+            url:'../../request.php',
+            method:'POST',
+            data:{
+                'vid':vid,
+                'p':'viewTask'
+            },
+            dataType: "json",
+            success:function (data) {
+                $('.descrpt').html(data[3]);
+                $('#vi-id').val(data[0]);
+                console.log(data)
+            }
+        });
+        return false;
+    });
+}
+
+function updateTask() {
+    $('.editBtn').on('click',function (e) {
+        e.preventDefault();
+        var  uid         = $("input[name='idEdit']").val(),
+             summary     = $("input[name='editSummary']").val(),
+             date        = $("input[name='dateEdit']").val(),
+             description = $("textarea[name='descriptionsEdit']").val();
+
+        $.ajax({
+            url:'../../request.php',
+            method:'POST',
+            data:{
+                'uid':uid,
+                'summary':summary,
+                'date':date,
+                'description':description,
+                'p':'updateTask'
+            },
+            dataType: "json",
+            success: function (response) {
+                if(response.success == 'Yes') {
+                    $('.updateSuccess').removeClass('hide');
+                }
+            }
+        });
+        return false;
+    });
 }
 
 function deleteTask() {
@@ -119,7 +191,9 @@ $(document).ready(function() {
     showHideTask();
     statusTask();
     createTask();
+    editingTask();
     updateTask();
+    viewTask()
     deleteTask();
 
     /* DataTables options */

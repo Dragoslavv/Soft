@@ -34,12 +34,12 @@
                                 <input type="text" name="del-id" id="del-id" value="<?php echo $t['id']; ?>">
 
                                 <tr class="chackbox1" id="<?php  echo $t['id']; ?>">
-                                    <td data-column="Summary"><a href="#" id="link""><?php echo $t['summary']; ?></a></td>
+                                    <td data-column="Summary"><a href="#" id="link" class="viewClass" data-toggle="modal" data-target="#viewModal" data-vid="<?php echo $t['id'] ?>"><?php echo $t['summary']; ?></a></td>
                                     <td data-column="Status">
                                         <select class="form-control list">
                                             <option value='1'>Pending</option>
                                             <option value='2'>In progress</option>
-                                            <option value='3'>Completed</option>
+                                            <option value='3' class="comp">Completed</option>
                                         </select>
                                     </td>
                                     <td data-column="Due Date"><?php echo $t['date']; ?></td>
@@ -58,6 +58,8 @@
                         <?php require "modal/editModal.php";?>
 
                         <?php require "modal/createModal.php";?>
+
+                        <?php require "modal/viewModal.php";?>
 
                     </div>
                 </div>

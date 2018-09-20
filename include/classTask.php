@@ -26,7 +26,7 @@ class ClassTask
         global $db;
         $qu = $db->connect();
         $query = $qu->query("SELECT * FROM `create-task` WHERE id = '{$id}'");
-        return $query;
+        return $query->fetch_all();
     }
 
     public function updateTask($summary, $date, $descriptions, $id)

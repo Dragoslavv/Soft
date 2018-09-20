@@ -9,6 +9,12 @@
                     </button>
                 </div>
                 <div class="modal-body">
+                    <div class="alert alert-success createSuccess hide" role="alert">
+                        You successfully create a new task!
+                    </div>
+                    <div class="alert alert-danger createError hide" role="alert">
+                        Error, try again!
+                    </div>
                     <form method="post" action="#">
                         <div class="container">
                             <div class="row">

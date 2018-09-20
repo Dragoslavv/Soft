@@ -40,30 +40,52 @@ if(isset($_POST) && isset($_POST['p']))
                 $query = $task->insertTask($_POST['summary'],$_POST['date'],$_POST['desc']);
 
                 if ($query) {
-                    $r = success('Successfuly', "ok", 200);
+                    $r = success('Successful', "ok", 200);
                     if (!in_array($r, $res)) array_push($res, $r);
                 } else {
                     $r = returnError('Nok', 'nok!', 400);
                     if (!in_array($r, $res)) array_push($res, $r);
                 }
             }
-            echo json_encode($res);
+            echo json_encode($res[0]);
+            break;
+        case "editTask":
+            $res = array();
+            if(isset($_POST['uid']) && !empty($_POST['uid'])){
+
+                $query = $task->editTask($_POST['uid']);
+
+                if (!in_array($query, $res)) array_push($res, $query);
+
+            }
+            echo json_encode($res[0][0]);
             break;
         case "updateTask":
             $res = array();
-            if(isset($_POST['editSummary']) && !empty($_POST['editSummary']) || isset($_POST['editDate']) && !empty($_POST['editDate']) || isset($_POST['editDesc']) && !empty($_POST['editDesc']) || isset($_POST['uid']) && !empty($_POST['uid'])) {
+            if(isset($_POST['summary']) && !empty($_POST['summary']) || isset($_POST['date']) && !empty($_POST['date']) || isset($_POST['description']) && !empty($_POST['description']) || isset($_POST['uid']) && !empty($_POST['uid'])) {
 
-                $update = $task->updateTask($_POST['editSummary'], $_POST['editDate'], $_POST['editDesc'], $_POST['uid']);
+                $update = $task->updateTask($_POST['summary'], $_POST['date'], $_POST['description'], $_POST['uid']);
 
                 if ($update) {
-                    $r = success('delete', "delete", 200);
+                    $r = success('Update', "Yes", 200);
                     if (!in_array($r, $res)) array_push($res, $r);
                 } else {
                     $r = returnError('Nok', 'nok!', 400);
                     if (!in_array($r, $res)) array_push($res, $r);
                 }
             }
-            echo json_encode($res);
+            echo json_encode($res[0]);
+            break;
+        case "viewTask":
+            $res = array();
+            if(isset($_POST['vid']) && !empty($_POST['vid'])){
+
+                $query = $task->editTask($_POST['vid']);
+
+                if (!in_array($query, $res)) array_push($res, $query);
+
+            }
+            echo json_encode($res[0][0]);
             break;
         case "deleteTasks":
             $res = array();
